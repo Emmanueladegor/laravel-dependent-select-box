@@ -4,18 +4,26 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodosTable extends Migration
+class CreateCountryStateTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+     public function up()
     {
-        Schema::create('todos', function (Blueprint $table) {
+        Schema::create('country', function(Blueprint $table){
             $table->increments('id');
-             $table->string('body');
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('state', function(Blueprint $table){
+
+            $table->increments('id');
+            $table->integer('country_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +35,6 @@ class CreateTodosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todos');
+        //
     }
 }
